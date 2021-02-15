@@ -28,8 +28,17 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
 
+  # Dio
+  dio: ^3.0.10
+  
   # Get
   get: ^3.25.4
+
+  # Get Storage
+  get_storage: ^1.4.0
+
+  # Meta
+  meta: ^1.2.4
 
   # Provider
   provider: ^4.3.3

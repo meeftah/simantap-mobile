@@ -7,17 +7,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscurePassword = true;
-  bool _obscureKonfirmasiPassword = true;
 
   void _togglePassword() {
     setState(() {
       _obscurePassword = !_obscurePassword;
-    });
-  }
-
-  void _toggleKonfirmasiPassword() {
-    setState(() {
-      _obscureKonfirmasiPassword = !_obscureKonfirmasiPassword;
     });
   }
 
@@ -79,8 +72,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   RoundedPasswordField(
                     hintText: "Password Anda",
-                    obscure: _obscureKonfirmasiPassword,
-                    onTap: () => _toggleKonfirmasiPassword(),
+                    obscure: _obscurePassword,
+                    onTap: () => _togglePassword(),
                     onChanged: (value) {},
                   ),
                   RoundedButton(
