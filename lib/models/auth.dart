@@ -25,6 +25,10 @@ class Auth {
         data: json["data"] == null ? null : DataAuth.fromJson(json["data"]),
     );
 
+    Auth.withError(String errorValue)
+      : status = false,
+        message = errorValue;
+
     Map<String, dynamic> toJson() => {
         "status": status == null ? null : status,
         "message": message == null ? null : message,

@@ -1,29 +1,14 @@
 part of 'controllers.dart';
 
 class AuthController extends GetxController {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController passwordConfController = TextEditingController();
-
   final box = GetStorage();
 
   @override
   void onClose() {
-    nameController?.dispose();
-    emailController?.dispose();
-    passwordController?.dispose();
-    passwordConfController?.dispose();
     super.onClose();
   }
 
-  void doRegister() async {
-    dio.FormData formData = dio.FormData.fromMap({
-      formName: nameController.text.trim(),
-      formEmail: emailController.text.trim(),
-      formPassword: passwordController.text.trim(),
-      formPassConf: passwordConfController.text.trim(),
-    });
+  void doRegister(dio.FormData formData) async {
     Auth register = await ApiClient().apiRegister(formData);
     if (register.isNotNull) {
       if (register.status) {
@@ -35,15 +20,23 @@ class AuthController extends GetxController {
           "Register Berhasil",
           "email ${box.read(boxEmail)} dan token ${box.read(boxApiToken)}",
         );
+      } else {
+        Get.snackbar(
+          "Register Gagal",
+          "${register.message}",
+          margin: EdgeInsets.all(20.0),
+          colorText: Colors.white,
+          backgroundColor: Colors.yellow[800],
+        );
       }
+    } else {
+      Get.snackbar(
+          "Terjadi Kesalahan",
+          "${register.message}",
+          margin: EdgeInsets.all(20.0),
+          colorText: Colors.white,
+          backgroundColor: Colors.yellow[800],
+        );
     }
-  }
-
-  // Sign out
-  void doLogOut() {
-    nameController.clear();
-    emailController.clear();
-    passwordController.clear();
-    passwordConfController.clear();
   }
 }
