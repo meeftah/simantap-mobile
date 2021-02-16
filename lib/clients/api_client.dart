@@ -3,7 +3,7 @@ import 'package:simantap/clients/logging_interceptor.dart';
 import 'package:simantap/models/auth.dart';
 
 class ApiClient {
-  static final endpoint = "http://10.10.50.14:8000/";
+  static final endpoint = "http://192.168.100.95:8000/";
   static final version1 = "api/v1/";
   static final register = endpoint + version1 + "register";
   static final login = endpoint + version1 + "login";

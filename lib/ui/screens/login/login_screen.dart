@@ -6,12 +6,21 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final box = GetStorage();
   bool _obscurePassword = true;
 
   void _togglePassword() {
     setState(() {
       _obscurePassword = !_obscurePassword;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // jika flag login = null maka set default ke false
+    box.writeIfNull(boxIsLoggedIn, false);
   }
 
   @override

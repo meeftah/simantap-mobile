@@ -3,12 +3,14 @@ import 'package:simantap/components/text_field_container.dart';
 import 'package:simantap/res/theme.dart';
 
 class RoundedPasswordField extends StatelessWidget {
+  final TextEditingController controller;
   final String hintText;
   final ValueChanged<String> onChanged;
   final bool obscure;
   final Function onTap;
   const RoundedPasswordField({
     Key key,
+    this.controller,
     this.hintText,
     this.onChanged,
     this.obscure = true,
@@ -18,7 +20,8 @@ class RoundedPasswordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextField(
+      child: TextFormField(
+        controller: controller,
         obscureText: obscure,
         onChanged: onChanged,
         cursorColor: primaryColor,

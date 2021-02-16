@@ -1,6 +1,7 @@
 // GetX box
 String boxEmail = "email";
 String boxApiToken = "api_token";
+String boxIsLoggedIn = "is_logged_in";
 
 // form register
 String formName = "name";
