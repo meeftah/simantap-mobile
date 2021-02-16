@@ -1,14 +1,14 @@
-class Default {
+class Basic {
   bool status;
   String message;
 
-  Default(this.status, this.message);
+  Basic(this.status, this.message);
 
-  Default.fromJson(Map<String, dynamic> json)
+  Basic.fromJson(Map<String, dynamic> json)
       : status = json["status"],
         message = json["message"];
 
-  Default.withError(String errorValue)
+  Basic.withError(String errorValue)
       : status = false,
         message = errorValue;
 }

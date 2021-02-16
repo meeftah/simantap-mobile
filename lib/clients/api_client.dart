@@ -6,7 +6,7 @@ import 'package:simantap/models/auth.dart';
 import 'package:simantap/res/constants.dart';
 
 class ApiClient {
-  static final endpoint = "http://10.10.50.14:8000/";
+  static final endpoint = "http://192.168.100.95:8000/";
   static final version1 = "api/v1/";
   static final register = endpoint + version1 + "register";
   static final login = endpoint + version1 + "login";

@@ -6,5 +6,6 @@ import 'package:dio/dio.dart' as dio;
 import 'package:simantap/models/auth.dart';
 import 'package:simantap/res/constants.dart';
 import 'package:simantap/utils/GeneralUtilsObjectExtension.dart';
+import 'package:simantap/widgets/snackbars.dart';
 
 part 'auth_controller.dart';

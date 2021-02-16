@@ -12,6 +12,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _passwordConfController = TextEditingController();
+
   bool _obscurePassword = true;
   bool _obscureKonfirmasiPassword = true;
 
@@ -106,13 +107,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     text: "DAFTAR",
                     press: () {
                       Get.focusScope.unfocus();
-                      dio.FormData formData = dio.FormData.fromMap({
-                        formName: _nameController.text.trim(),
-                        formEmail: _emailController.text.trim(),
-                        formPassword: _passwordController.text.trim(),
-                        formPassConf: _passwordConfController.text.trim(),
-                      });
-                      _authController.doRegister(formData);
+                        dio.FormData formData = dio.FormData.fromMap({
+                          formName: _nameController.text.trim(),
+                          formEmail: _emailController.text.trim(),
+                          formPassword: _passwordController.text.trim(),
+                          formPassConf: _passwordConfController.text.trim(),
+                        });
+                        _authController.doRegister(formData);
                     },
                   ),
                   SizedBox(height: size.height * 0.01),
