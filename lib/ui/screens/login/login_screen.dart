@@ -6,21 +6,17 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final box = GetStorage();
+  final AuthController _authController = Get.put(AuthController());
+
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   bool _obscurePassword = true;
 
   void _togglePassword() {
     setState(() {
       _obscurePassword = !_obscurePassword;
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    // jika flag login = null maka set default ke false
-    box.writeIfNull(boxIsLoggedIn, false);
   }
 
   @override
@@ -75,11 +71,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: size.height * 0.03),
                   RoundedInputField(
+                    controller: _emailController,
                     icon: Icons.email,
                     hintText: "Email Anda",
                     onChanged: (value) {},
                   ),
                   RoundedPasswordField(
+                    controller: _passwordController,
                     hintText: "Password Anda",
                     obscure: _obscurePassword,
                     onTap: () => _togglePassword(),
@@ -87,7 +85,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   RoundedButton(
                     text: "LOGIN",
-                    press: () {},
+                    press: () {
+                      Get.focusScope.unfocus();
+                      dio.FormData formData = dio.FormData.fromMap({
+                        formEmail: _emailController.text.trim(),
+                        formPassword: _passwordController.text.trim(),
+                      });
+                      _authController.doLogin(context, formData);
+                    },
                   ),
                   SizedBox(height: size.height * 0.01),
                   Row(

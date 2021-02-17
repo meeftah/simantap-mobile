@@ -113,7 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           formPassword: _passwordController.text.trim(),
                           formPassConf: _passwordConfController.text.trim(),
                         });
-                        _authController.doRegister(formData);
+                        _authController.doRegister(context, formData);
                     },
                   ),
                   SizedBox(height: size.height * 0.01),

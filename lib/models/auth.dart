@@ -38,19 +38,23 @@ class Auth {
 
 class DataAuth {
     DataAuth({
+        this.name,
         this.email,
         this.apiToken,
     });
 
+    String name;
     String email;
     String apiToken;
 
     factory DataAuth.fromJson(Map<String, dynamic> json) => DataAuth(
+        name: json["name"] == null ? null : json["name"],
         email: json["email"] == null ? null : json["email"],
         apiToken: json["api_token"] == null ? null : json["api_token"],
     );
 
     Map<String, dynamic> toJson() => {
+        "name": name == null ? null : name,
         "email": email == null ? null : email,
         "api_token": apiToken == null ? null : apiToken,
     };

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:simantap/res/constants.dart';
 import 'package:simantap/res/theme.dart';
 import 'package:simantap/ui/screens/screens.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -10,8 +11,21 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final box = GetStorage();
+
+  @override
+  void initState() {
+    super.initState();
+
+    box.writeIfNull(boxIsLoggedIn, false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -36,7 +50,7 @@ class MyApp extends StatelessWidget {
         ],
         background: Container(color: Colors.white),
       ),
-      home: LoginScreen(),
+      home: box.read(boxIsLoggedIn) ? HomeScreen() : LoginScreen(),
     );
   }
 }

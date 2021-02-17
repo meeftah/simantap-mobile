@@ -40,6 +40,9 @@ dependencies:
   # Meta
   meta: ^1.2.4
 
+  # NDialog
+  ndialog: ^3.2.1
+
   # Provider
   provider: ^4.3.3
 

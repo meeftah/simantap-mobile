@@ -1,4 +1,5 @@
 // GetX box
+String boxName = "name";
 String boxEmail = "email";
 String boxApiToken = "api_token";
 String boxIsLoggedIn = "is_logged_in";

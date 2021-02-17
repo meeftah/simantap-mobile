@@ -22,13 +22,23 @@ class ApiClient {
     dio.interceptors.add(LoggingInterceptor());
   }
 
-  // ---------------- Login
+  // ---------------- Register
   Future<Auth> apiRegister(FormData formData) async {
     Response response = await dio.post(register, data: formData);
     if (response.statusCode == 200) {
       return authFromJson(response.data);
     } else {
-      return Auth.fromJson(jsonDecode(response.data));
+      return Auth.withError(jsonDecode(response.data));
+    }
+  }
+
+  // ---------------- Register
+  Future<Auth> apiLogin(FormData formData) async {
+    Response response = await dio.post(login, data: formData);
+    if (response.statusCode == 200) {
+      return authFromJson(response.data);
+    } else {
+      return Auth.withError(jsonDecode(response.data));
     }
   }
 

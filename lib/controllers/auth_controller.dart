@@ -1,36 +1,68 @@
 part of 'controllers.dart';
 
 class AuthController extends GetxController {
-  var isLoading = true.obs;
-  var box = GetStorage();
+  final box = GetStorage();
 
   @override
   void onClose() {
     super.onClose();
   }
 
-  void doRegister(dio.FormData formData) async {
-    isLoading(true);
+  void doRegister(BuildContext context, dio.FormData formData) async {
+    CustomProgressDialog progressDialog = CustomProgressDialog(
+      context,
+      blur: 10,
+      dismissable: false,
+    );
     try {
-      Auth register = await ApiClient().apiRegister(formData);
-      if (register.isNotNull) {
-        if (register.status) {
-          box.write(boxEmail, register.data.email);
-          box.write(boxApiToken, register.data.apiToken);
+      progressDialog.show();
+      Auth response = await ApiClient().apiRegister(formData);
+      progressDialog.dismiss();
+      if (response.isNotNull) {
+        if (response.status) {
+          box.write(boxName, response.data.name);
+          box.write(boxEmail, response.data.email);
+          box.write(boxApiToken, response.data.apiToken);
           box.write(boxIsLoggedIn, true);
-      
-          Get.snackbar(
-            "Register Berhasil",
-            "email ${box.read(boxEmail)} dan token ${box.read(boxApiToken)}",
-          );
+
+          Get.offAll(HomeScreen());
         } else {
-          snackbarSuccess(title: "Register Gagal", message: register.message);
+          snackbarWarning(title: "Register Gagal", message: response.message);
         }
       } else {
-        snackbarWarning(title: "Terjadi Kesalahan", message: register.message);
+        snackbarWarning(title: "Terjadi Kesalahan", message: response.message);
       }
-    } finally {
-      isLoading(false);
+    } catch (e) {
+      print("Register > Error: " + e);
+    }
+  }
+
+  void doLogin(BuildContext context, dio.FormData formData) async {
+    CustomProgressDialog progressDialog = CustomProgressDialog(
+      context,
+      blur: 10,
+      dismissable: false,
+    );
+    try {
+      progressDialog.show();
+      Auth response = await ApiClient().apiLogin(formData);
+      progressDialog.dismiss();
+      if (response.isNotNull) {
+        if (response.status) {
+          box.write(boxName, response.data.name);
+          box.write(boxEmail, response.data.email);
+          box.write(boxApiToken, response.data.apiToken);
+          box.write(boxIsLoggedIn, true);
+
+          Get.offAll(HomeScreen());
+        } else {
+          snackbarWarning(title: "Login Gagal", message: response.message);
+        }
+      } else {
+        snackbarWarning(title: "Terjadi Kesalahan", message: response.message);
+      }
+    } catch (e) {
+      print("Login > Error: " + e);
     }
   }
 }
