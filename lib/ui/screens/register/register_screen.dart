@@ -80,7 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   RoundedInputField(
                     controller: _nameController,
                     icon: Icons.tag_faces,
-                    hintText: "Nama Anda",
+                    hintText: "Nama Lengkap Anda",
                     onChanged: (value) {},
                   ),
                   RoundedInputField(

@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:simantap/clients/api_client.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:simantap/models/auth.dart';
+import 'package:simantap/models/info_tambahan.dart';
 import 'package:simantap/res/constants.dart';
 import 'package:simantap/ui/screens/screens.dart';
 import 'package:simantap/utils/GeneralUtilsObjectExtension.dart';
@@ -11,3 +12,4 @@ import 'package:simantap/widgets/snackbars.dart';
 import 'package:ndialog/ndialog.dart';
 
 part 'auth_controller.dart';
+part 'info_tambahan_controller.dart';

@@ -1,8 +1,11 @@
-// GetX box
+// SharefPref box
 String boxName = "name";
 String boxEmail = "email";
 String boxApiToken = "api_token";
 String boxIsLoggedIn = "is_logged_in";
+
+// SharefPref Settings
+String settingITView = "it_cardview";
 
 // form register
 String formName = "name";

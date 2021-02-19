@@ -3,11 +3,6 @@ part of 'controllers.dart';
 class AuthController extends GetxController {
   final box = GetStorage();
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   void doRegister(BuildContext context, dio.FormData formData) async {
     CustomProgressDialog progressDialog = CustomProgressDialog(
       context,

@@ -1,17 +1,20 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:simantap/clients/logging_interceptor.dart';
 import 'package:simantap/models/auth.dart';
+import 'package:simantap/models/info_tambahan.dart';
 import 'package:simantap/res/constants.dart';
 
 class ApiClient {
-  static final endpoint = "http://192.168.100.95:8000/";
+  static final endpoint = "http://10.10.8.44:8000/";
   static final version1 = "api/v1/";
   static final register = endpoint + version1 + "register";
   static final login = endpoint + version1 + "login";
+  static final modul2 = endpoint + version1 + "modul2";
 
   Dio dio;
+
+  final box = GetStorage();
 
   ApiClient() {
     BaseOptions options = BaseOptions(
@@ -24,25 +27,41 @@ class ApiClient {
 
   // ---------------- Register
   Future<Auth> apiRegister(FormData formData) async {
-    Response response = await dio.post(register, data: formData);
-    if (response.statusCode == 200) {
+    try {
+      Response response = await dio.post(register, data: formData);
       return authFromJson(response.data);
-    } else {
-      return Auth.withError(jsonDecode(response.data));
+    } catch (error) {
+      return Auth.withError(handleError(error));
     }
   }
 
   // ---------------- Register
   Future<Auth> apiLogin(FormData formData) async {
-    Response response = await dio.post(login, data: formData);
-    if (response.statusCode == 200) {
+    try {
+      Response response = await dio.post(login, data: formData);
       return authFromJson(response.data);
-    } else {
-      return Auth.withError(jsonDecode(response.data));
+    } catch (error) {
+      return Auth.withError(handleError(error));
     }
   }
 
-  // Dio Error Handler
+  // ---------------- Info Tambahan
+  Future<InfoTambahan> apiInfoTambahan() async {
+    try {
+      String token = box.read(boxApiToken);
+      String email = box.read(boxEmail);
+      
+      dio.options.headers["authorization"] = "Bearer $token";
+      dio.options.headers["email"] = email;
+
+      Response response = await dio.get(modul2);
+      return infoTambahanFromJson(response.data);
+    } catch (error) {
+      return InfoTambahan.withError(handleError(error));
+    }
+  }
+
+  // ################ Dio Error Handler
   String handleError(DioError dioError) {
     String errorDescription = "";
     switch (dioError.type) {
