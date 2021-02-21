@@ -34,6 +34,10 @@ class InfoTambahanController extends GetxController {
   //   }
   // }
 
+  Future<void> refresh() async {
+    fetchInfoTambahan();
+  }
+
   void setCardView(int count) {
     settings.write(settingITView, count);
     crossAxisCount(count);
@@ -41,6 +45,7 @@ class InfoTambahanController extends GetxController {
 
   void fetchInfoTambahan() async {
     try {
+      isLoading(true);
       InfoTambahan response = await ApiClient().apiInfoTambahan();
       if (response.isNotNull) {
         if (response.status) {
