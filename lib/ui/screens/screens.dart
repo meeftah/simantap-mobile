@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:simantap/components/rounded_button.dart';
@@ -11,6 +13,7 @@ import 'package:simantap/res/theme.dart';
 import 'package:simantap/controllers/controllers.dart';
 import 'package:simantap/utils/hex_color.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 part 'login/login_screen.dart';
 part 'register/register_screen.dart';
