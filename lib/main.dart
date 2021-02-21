@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:simantap/res/constants.dart';
@@ -28,6 +29,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: accentColor,
+      statusBarIconBrightness: Brightness.light,
+    ));
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SiMantap',
