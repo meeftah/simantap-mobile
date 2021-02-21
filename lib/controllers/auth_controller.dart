@@ -60,4 +60,9 @@ class AuthController extends GetxController {
       print("Login > Error: " + e);
     }
   }
+
+  void doLogout() {
+    box.erase();
+    Get.offAll(LoginScreen());
+  }
 }
