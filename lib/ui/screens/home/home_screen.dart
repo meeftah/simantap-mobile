@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Container(
             width: double.infinity,
             height: size.height,
-            color: Colors.grey[100],
+            color: Colors.white,
             child: Column(
               children: [
                 Container(
@@ -53,9 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 Text(
                                   "${box.read(boxName)}",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     fontSize: 32,
-                                    fontWeight: FontWeight.w900,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ],
@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 title: "KELUAR",
                                 middleText: "Apakah Anda yakin ingin keluar?",
                                 textConfirm: "Yakin, Keluar",
-                                confirmTextColor: Colors.white, 
+                                confirmTextColor: Colors.white,
                                 textCancel: "Batal",
                                 radius: 15.0,
                                 onConfirm: () => authController.doLogout(),
@@ -87,42 +87,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      // getSearchBarUI(),
+                      getSearchBarUI(),
                     ],
                   ),
                 ),
                 Expanded(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Positioned(
-                        top: 0,
-                        left: 0,
-                        child: Image.asset(
-                          "assets/common/images/main_top.png",
-                          width: size.width * 0.35,
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Image.asset(
-                          "assets/login/images/login_bottom.png",
-                          width: size.width * 0.4,
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          // getSearchBarUI(),
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.fromLTRB(18.0, 0.0, 18.0, 18.0),
-                              child: getInfoTambahanList(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(18.0, 0.0, 18.0, 18.0),
+                    child: getInfoTambahanList(),
                   ),
                 ),
               ],
@@ -135,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget getSearchBarUI() {
     return Padding(
-      padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0.0),
+      padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 0.0),
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 76,
@@ -143,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.only(top: 8, bottom: 8),
           child: Container(
             decoration: BoxDecoration(
-              color: HexColor("#F0FAFE"),
+              color: primaryColor,
               borderRadius: BorderRadius.only(
                 bottomRight: Radius.circular(13.0),
                 bottomLeft: Radius.circular(13.0),
@@ -158,10 +130,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.only(left: 16),
                     child: TextFormField(
                       style: TextStyle(
-                        fontFamily: 'WorkSans',
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Colors.black54,
+                        fontSize: 20.0,
+                        color: Colors.white,
                       ),
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
@@ -169,15 +140,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         border: InputBorder.none,
                         helperStyle: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: HexColor("#B9BABC"),
+                          fontSize: 18,
+                          color: Colors.white,
                         ),
                         contentPadding: EdgeInsets.all(5.0),
                         labelStyle: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
                           letterSpacing: 0.2,
-                          color: HexColor("#B9BABC"),
+                          color: Colors.white,
                         ),
                       ),
                       onChanged: (text) {
@@ -194,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 60,
                   child: Icon(
                     Icons.search,
-                    color: HexColor("#B9BABC"),
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -213,8 +184,9 @@ class _HomeScreenState extends State<HomeScreen> {
         return StaggeredGridView.countBuilder(
           crossAxisCount: infoTambahanController.crossAxisCount.value,
           itemCount: infoTambahanController.infoTambahan.length ?? 0,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
+          crossAxisSpacing: 0.0,
+          mainAxisSpacing: 10.0,
+          padding: EdgeInsets.only(top: 20.0),
           itemBuilder: (context, index) {
             return InfoTambahanItem(index, infoTambahanController.infoTambahan[index]);
           },

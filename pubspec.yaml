@@ -43,6 +43,9 @@ dependencies:
   # Get Storage
   get_storage: ^1.4.0
 
+  # Google Fonts
+  google_fonts: ^1.1.2
+
   # Meta
   meta: ^1.2.4
 

@@ -1,4 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
+  import 'package:supercharged/supercharged.dart';
 
 part 'colors.dart';
