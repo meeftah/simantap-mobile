@@ -42,6 +42,7 @@ class InfoTambahanDetailScreen extends StatelessWidget {
                 "${infoTambahanDatum.judul}",
                 maxLines: 3,
                 style: GoogleFonts.poppins(
+                  color: Colors.indigo[800],
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
@@ -51,7 +52,7 @@ class InfoTambahanDetailScreen extends StatelessWidget {
                 ? SizedBox.shrink()
                 : Padding(
                     padding: EdgeInsets.only(left: 30.0, right: 30.0),
-                    child: Html(data: infoTambahanDatum.deskripsi),
+                    child: HtmlWidget(infoTambahanDatum.deskripsi),
                   ),
             Expanded(
               child: GridView.count(
@@ -61,7 +62,8 @@ class InfoTambahanDetailScreen extends StatelessWidget {
                 children: List.generate(
                   infoTambahanDatum.infoTambahanDetail.length,
                   (index) {
-                    return InfoTambahanDetailItem(index, infoTambahanDatum.infoTambahanDetail[index]);
+                    return InfoTambahanDetailItem(
+                        index, infoTambahanDatum.infoTambahanDetail[index]);
                   },
                 ),
                 // itemBuilder: (context, index) {

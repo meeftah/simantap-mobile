@@ -18,13 +18,19 @@ class InfoTambahanDetailItem extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(20.0),
           alignment: Alignment.bottomLeft,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(RandomCircleBack().circleBackIndex(index)),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Text(
             "${infoTambahanDetailDatum.judul}",
             maxLines: 3,
-            style: TextStyle(
+            style: GoogleFonts.poppins(
               color: Colors.white,
               fontSize: 17.0,
-              fontWeight: FontWeight.w800,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
@@ -39,7 +45,10 @@ class InfoTambahanDetailItem extends StatelessWidget {
                 topRight: const Radius.circular(30.0),
               ),
               boxShadow: [
-                BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0),
+                BoxShadow(
+                  color: Colors.black.withAlpha(100),
+                  blurRadius: 10.0,
+                ),
               ],
             ),
             child: infoTambahanDetailDatum.deskripsi == null
@@ -83,6 +92,20 @@ class InfoTambahanDetailItem extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            Positioned(
+                              bottom: 20.0,
+                              left: 50.0,
+                              right: 20.0,
+                              child: AutoSizeText(
+                                "${infoTambahanDetailDatum.judul}",
+                                maxLines: 1,
+                                style: GoogleFonts.poppins(
+                                  color: Colors.indigo[800],
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -91,18 +114,11 @@ class InfoTambahanDetailItem extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: EdgeInsets.all(25.0),
-                                child: Text(
-                                  "${infoTambahanDetailDatum.judul}",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 26.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Html(
-                                data: infoTambahanDetailDatum.deskripsi,
+                              Container(
+                                padding:
+                                    EdgeInsets.fromLTRB(0.0, 20.0, 20.0, 20.0),
+                                child: HtmlWidget(
+                                    infoTambahanDetailDatum.deskripsi),
                               ),
                             ],
                           ),

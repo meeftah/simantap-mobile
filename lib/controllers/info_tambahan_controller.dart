@@ -4,6 +4,7 @@ class InfoTambahanController extends GetxController {
   final settings = GetStorage("settings");
 
   var infoTambahan = List<InfoTambahanDatum>().obs;
+  var tmpList = List<InfoTambahanDatum>().obs;
   var isLoading = true.obs;
   var crossAxisCount = 2.obs;
 
@@ -19,17 +20,20 @@ class InfoTambahanController extends GetxController {
 
   // void filterList(String filteredText) {
   //   print(filteredText);
-  //   List<InfoTambahanDatum> tmpList = infoTambahan;
   //   List<InfoTambahanDatum> filteredList = new List<InfoTambahanDatum>();
-  //   for (int i = 0; i < infoTambahan.length; i++) {
-  //     if (infoTambahan[i].judul.toLowerCase().contains(filteredText.toLowerCase())) {
-  //       filteredList.add(infoTambahan[i]);
-  //     }
-  //   }
-  //   infoTambahan.clear();
-  //   if (filteredList.length == 0) {
-  //     infoTambahan(tmpList);
+  //   print(tmpList);
+  //   if (filteredText.isNullOrEmpty) {
+  //     infoTambahan = tmpList;
   //   } else {
+  //     infoTambahan.clear();
+  //     for (int i = 0; i < infoTambahan.length; i++) {
+  //       if (infoTambahan[i]
+  //           .judul
+  //           .toLowerCase()
+  //           .contains(filteredText.toLowerCase())) {
+  //         filteredList.add(infoTambahan[i]);
+  //       }
+  //     }
   //     infoTambahan(filteredList);
   //   }
   // }
@@ -50,8 +54,10 @@ class InfoTambahanController extends GetxController {
       if (response.isNotNull) {
         if (response.status) {
           infoTambahan(response.data);
+          // tmpList = infoTambahan;
         } else {
-          snackbarWarning(title: "Gagal mendapatkan data", message: response.message);
+          snackbarWarning(
+              title: "Gagal mendapatkan data", message: response.message);
         }
       } else {
         snackbarWarning(title: "Terjadi Kesalahan", message: response.message);

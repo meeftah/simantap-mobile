@@ -6,7 +6,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final InfoTambahanController infoTambahanController = Get.put(InfoTambahanController());
+  final InfoTambahanController infoTambahanController =
+      Get.put(InfoTambahanController());
   final AuthController authController = Get.put(AuthController());
   final box = GetStorage();
 
@@ -87,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      getSearchBarUI(),
+                      // getSearchBarUI(),
                     ],
                   ),
                 ),
@@ -188,7 +189,8 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisSpacing: 10.0,
           padding: EdgeInsets.only(top: 20.0),
           itemBuilder: (context, index) {
-            return InfoTambahanItem(index, infoTambahanController.infoTambahan[index]);
+            return InfoTambahanItem(
+                index, infoTambahanController.infoTambahan[index]);
           },
           staggeredTileBuilder: (index) => StaggeredTile.fit(1),
         );
