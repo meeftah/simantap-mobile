@@ -34,24 +34,29 @@ class InfoTambahanDetailScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 30.0, top: 20.0, right: 30.0),
-              child: Text(
-                "${infoTambahanDatum.judul}",
-                maxLines: 3,
-                style: GoogleFonts.poppins(
-                  color: Colors.indigo[800],
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
+                centerTitle: false,
+                title: AutoSizeText(
+                  "${infoTambahanDatum.judul}",
+                  maxLines: 2,
+                  maxFontSize: 25.0,
+                  minFontSize: 18.0,
+                  style: GoogleFonts.poppins(
+                    height: 1.2,
+                    color: Colors.indigo[800],
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
             infoTambahanDatum.deskripsi == null
                 ? SizedBox.shrink()
                 : Padding(
-                    padding: EdgeInsets.only(left: 30.0, right: 30.0),
+                    padding: EdgeInsets.only(
+                      left: 30.0,
+                      top: 20.0,
+                      right: 30.0,
+                    ),
                     child: HtmlWidget(infoTambahanDatum.deskripsi),
                   ),
             Expanded(
