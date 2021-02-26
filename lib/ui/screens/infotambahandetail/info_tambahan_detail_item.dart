@@ -81,14 +81,14 @@ class InfoTambahanDetailItem extends StatelessWidget {
                         )
                       ],
                     )
-                  : content(context)),
+                  : contentMain(context)),
         ),
         isScrollControlled: true,
       ),
     );
   }
 
-  Widget content(context) {
+  Widget contentMain(context) {
     return Column(
       children: [
         Container(

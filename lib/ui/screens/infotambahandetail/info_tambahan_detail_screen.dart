@@ -49,33 +49,36 @@ class InfoTambahanDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-            infoTambahanDatum.deskripsi == null
-                ? SizedBox.shrink()
-                : Padding(
-                    padding: EdgeInsets.only(
-                      left: 30.0,
-                      top: 20.0,
-                      right: 30.0,
-                    ),
-                    child: HtmlWidget(infoTambahanDatum.deskripsi),
-                  ),
             Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                padding: EdgeInsets.all(15.0),
-                physics: BouncingScrollPhysics(),
-                children: List.generate(
-                  infoTambahanDatum.infoTambahanDetail.length,
-                  (index) {
-                    return InfoTambahanDetailItem(
-                        index, infoTambahanDatum.infoTambahanDetail[index]);
-                  },
-                ),
-                // itemBuilder: (context, index) {
-
-                // },
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  infoTambahanDatum.deskripsi == null
+                      ? SizedBox.shrink()
+                      : Padding(
+                          padding: EdgeInsets.only(
+                            left: 30.0,
+                            top: 20.0,
+                            right: 30.0,
+                          ),
+                          child: HtmlWidget(infoTambahanDatum.deskripsi),
+                        ),
+                  GridView.count(
+                    crossAxisCount: 2,
+                    padding: EdgeInsets.all(15.0),
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    children: List.generate(
+                      infoTambahanDatum.infoTambahanDetail.length,
+                      (index) {
+                        return InfoTambahanDetailItem(
+                            index, infoTambahanDatum.infoTambahanDetail[index]);
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ),
+            )
           ],
         ),
       ),
